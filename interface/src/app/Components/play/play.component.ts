@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-play',
   standalone: true,
-  imports: [CommonModule, FormsModule],  // 👈 Add FormsModule here
+  imports: [CommonModule, FormsModule],
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.css']
 })
