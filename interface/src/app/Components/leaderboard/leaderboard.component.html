@@ -1,0 +1,46 @@
+<!-- leaderboard.component.html -->
+<div class="leaderboard-container">
+  <div class="leaderboard-header">
+    <h2>🏆 Leaderboard</h2>
+    <button class="refresh-btn" (click)="refreshLeaderboard()" [disabled]="loading">
+      🔄 Refresh
+    </button>
+  </div>
+
+  <div class="leaderboard-content">
+    <div *ngIf="loading" class="loading">
+      <p>Loading leaderboard...</p>
+    </div>
+
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+      <button (click)="refreshLeaderboard()">Try Again</button>
+    </div>
+
+    <div *ngIf="!loading && !error && leaderboardData.length === 0" class="no-data">
+      <p>No leaderboard data available</p>
+    </div>
+
+    <table *ngIf="!loading && !error && leaderboardData.length > 0" class="leaderboard-table">
+             <thead>
+         <tr>
+           <th>Rank</th>
+           <th>Player</th>
+           <th>Score</th>
+         </tr>
+       </thead>
+              <tbody>
+          <tr *ngFor="let entry of leaderboardData; let i = index" [ngClass]="getRankClass(i)">
+            <td class="rank">
+              <span *ngIf="getRank(i) === 1">🥇</span>
+              <span *ngIf="getRank(i) === 2">🥈</span>
+              <span *ngIf="getRank(i) === 3">🥉</span>
+              <span *ngIf="getRank(i) > 3">{{ getRank(i) }}</span>
+            </td>
+                         <td class="username">{{ entry.username }}</td>
+             <td class="score">{{ entry.score.toLocaleString() }}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
