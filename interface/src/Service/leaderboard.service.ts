@@ -17,6 +17,7 @@ export class LeaderboardService {
   constructor(private http: HttpClient) { }
 
   getLeaderboard(): Observable<LeaderboardEntry[]> {
+    console.log('Fetching leaderboard from:', `${this.apiUrl}/get_leaderboard`);
     return this.http.get<LeaderboardEntry[]>(`${this.apiUrl}/get_leaderboard`);
   }
 
