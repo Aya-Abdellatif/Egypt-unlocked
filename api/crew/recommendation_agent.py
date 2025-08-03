@@ -1,8 +1,9 @@
+import os
+
 from crewai import Agent, Task, Crew, LLM
 from crewai_tools import SerperDevTool
 from urllib.parse import quote_plus
 from .models.places_output import PlacesOutput
-import json
 
 
 class RecommendationAgent:
@@ -21,7 +22,7 @@ class RecommendationAgent:
         # LLM configuration
         gemini_llm = LLM(
             model="gemini/gemini-1.5-flash",
-            api_key="AIzaSyDYCeBNULacfL5cbG7hdd7OBpql-KFgYdQ",
+            api_key=os.getenv("GEMINI_API_KEY", ""),
             temperature=0.3,
         )
 
@@ -32,7 +33,7 @@ class RecommendationAgent:
                 f"Find up to 10 tourist places and hidden gems in {city}, Egypt matching interests {interests}. "
                 "You must use the provided search tool to fetch the latest information."
             ),
-            backstory="You can fact-check using web searches, and return only JSON with 'name', 'type'.",
+            backstory="You can fact-check using web searches, and return only JSON with 'name', 'type' and 'crowdness'.",
             llm=gemini_llm,
             tools=[self.search_tool],
         )
@@ -40,8 +41,8 @@ class RecommendationAgent:
         research_task = Task(
             description=(
                 f"Use web search as needed to gather up to 10 places. "
-                "Return a JSON object with key 'places'. Each place must have exactly 'name' and 'type' "
-                "('mainstream' or 'hidden gem')."
+                "Return a JSON object with key 'places'. Each place must have exactly 'name', 'type' "
+                "('mainstream' or 'hidden gem') and crowdness('not crowded', 'slightly crowded', 'crowded')."
             ),
             expected_output="JSON matching the PlacesOutput schema.",
             agent=researcher,
