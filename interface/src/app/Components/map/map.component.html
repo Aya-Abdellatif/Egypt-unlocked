@@ -1,0 +1,15 @@
+<div class="map-container">
+  <img src="assets/images/egypt-map.jpg" class="map-image" alt="Map" />
+
+  <div
+    *ngFor="let loc of locations"
+    class="location-marker"
+    [ngClass]="loc.type"
+    [style.top.%]="loc.y"
+    [style.left.%]="loc.x"
+    (click)="openLocation(loc.link)"
+    [title]="loc.name"
+  >
+    📍
+  </div>
+</div>

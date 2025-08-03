@@ -1,0 +1,30 @@
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.map-image {
+  width: 100%;
+}
+
+.location-marker {
+  position: absolute;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.location-marker:hover {
+  transform: scale(1.2) translate(-50%, -50%);
+}
+
+.mainstream {
+  color: red;
+}
+
+.hidden\ gem {
+  color: blue;
+}
