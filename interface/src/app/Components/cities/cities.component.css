@@ -94,3 +94,21 @@ body {
     max-width: 100%;
   }
 }
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #edcdb3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.read-more:hover {
+  color: #7c4a21;
+  border-bottom: 2px solid #a47148;
+  transform: translateX(3px);
+}

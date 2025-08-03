@@ -1,0 +1,66 @@
+.siwa-container {
+  background: #f6f1e9;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #a47148;
+  border-bottom: 2px solid #c19a6b;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.siwa-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.siwa-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #a47148;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  overflow: hidden;
+  max-width: 900px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.siwa-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.siwa-card:hover {
+  transform: scale(1.02);
+}
+
+.siwa-card img {
+  width: 400px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-text {
+  padding: 20px;
+  flex: 1;
+  color: #4a2f1b;
+}
+
+.card-text h3 {
+  margin-top: 0;
+  color: #a47148;
+  font-size: 1.4rem;
+}
+
+.card-text p {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
