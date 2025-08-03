@@ -26,6 +26,7 @@ export class LeaderboardComponent implements OnInit {
     
     this.leaderboardService.getLeaderboard().subscribe({
       next: (data) => {
+        console.log('Leaderboard data received:', data);
         this.leaderboardData = data;
         this.loading = false;
       },
