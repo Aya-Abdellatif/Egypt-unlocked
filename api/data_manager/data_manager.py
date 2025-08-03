@@ -11,14 +11,13 @@ class DataManager:
             database_name (str): Base name of the database ('.db' is appended).
         """
         self.database_name = database_name
-        self.conn = sqlite3.connect(f"{database_name}.db")
-        self.conn.row_factory = sqlite3.Row
+        conn = self._get_conn()
 
         # Enable foreign key constraints (needed for ON DELETE CASCADE to work)
-        self.conn.execute("PRAGMA foreign_keys = ON")
+        conn.execute("PRAGMA foreign_keys = ON")
 
         # Create the database if not already created
-        cursor = self.conn.cursor()
+        cursor = conn.cursor()
 
         # Create users table
         cursor.execute(
@@ -45,7 +44,7 @@ class DataManager:
         """
         )
 
-        self.conn.commit()
+        conn.commit()
 
     def _hash_password(self, password: str) -> str:
         """Hash a plain-text password using bcrypt.
@@ -81,7 +80,7 @@ class DataManager:
         Returns:
             list[sqlite3.Row]: List of rows representing visited places.
         """
-        cursor = self.conn.cursor()
+        cursor = self._get_conn()
         cursor.execute(
             """
             SELECT *
@@ -101,7 +100,8 @@ class DataManager:
             user_id (int): ID of the user whose score will be incremented.
             score (int): Amount to add to the existing score.
         """
-        cursor = self.conn.cursor()
+        conn = self._get_conn()
+        cursor = conn.cursor()
         cursor.execute(
             """
             UPDATE users
@@ -110,7 +110,7 @@ class DataManager:
         """,
             (score, user_id),
         )
-        self.conn.commit()
+        conn.commit()
 
     def add_new_user(self, username: str, password: str) -> None:
         """Add a new user to the database with a hashed password.
@@ -120,7 +120,8 @@ class DataManager:
             password (str): Plain-text password to hash and store.
         """
         hashed_password = self._hash_password(password)
-        cursor = self.conn.cursor()
+        conn = self._get_conn()
+        cursor = conn.cursor()
         cursor.execute(
             """
             INSERT INTO users(username, password) VALUES(?, ?)
@@ -139,7 +140,8 @@ class DataManager:
         Returns:
             bool: True if credentials are valid, False otherwise.
         """
-        cursor = self.conn.cursor()
+        conn = self._get_conn()
+        cursor = conn.cursor()
         cursor.execute(
             """
             SELECT password FROM users WHERE username = ?
@@ -162,7 +164,8 @@ class DataManager:
         Returns:
             Optional[sqlite3.Row]: Row containing id, username, and score if found; otherwise None.
         """
-        cursor = self.conn.cursor()
+        conn = self._get_conn()
+        cursor = conn.cursor()
         cursor.execute(
             """
             SELECT id, username, score FROM users WHERE username = ?
@@ -177,7 +180,8 @@ class DataManager:
         Returns:
             list[sqlite3.Row]: List of username and score pairs sorted highest first.
         """
-        cursor = self.conn.cursor()
+        conn = self._get_conn()
+        cursor = conn.cursor()
         cursor.execute(
             """
             SELECT username, score
@@ -188,3 +192,15 @@ class DataManager:
 
         rows = cursor.fetchall()
         return rows
+
+    def _get_conn(self) -> sqlite3.Connection:
+        """Create and return a new SQLite database connection.
+        The connection uses `sqlite3.Row` as the row factory to allow
+        accessing columns by name.
+
+        Returns:
+            sqlite3.Connection: A new connection to the database.
+        """
+        conn = sqlite3.connect(f"{self.database_name}.db")
+        conn.row_factory = sqlite3.Row
+        return conn
