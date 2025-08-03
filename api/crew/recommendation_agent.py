@@ -1,7 +1,7 @@
 from crewai import Agent, Task, Crew, LLM
 from crewai_tools import SerperDevTool
 from urllib.parse import quote_plus
-from models.places_output import PlacesOutput
+from .models.places_output import PlacesOutput
 import json
 
 
@@ -30,7 +30,7 @@ class RecommendationAgent:
             role="Researcher",
             goal=(
                 f"Find up to 10 tourist places and hidden gems in {city}, Egypt matching interests {interests}. "
-                "You may use the provided search tool to fetch the latest information."
+                "You must use the provided search tool to fetch the latest information."
             ),
             backstory="You can fact-check using web searches, and return only JSON with 'name', 'type'.",
             llm=gemini_llm,
