@@ -13,13 +13,13 @@ body {
 
 .section-subtitle {
   font-size: 2.985984rem;
-  color: #3b2f2f;
+  color: #231706;
   margin-bottom: 40px;
 }
 
 /* Services Section */
 .services-section {
-  background-color: #f4eee4;
+  background-color: #D8C29D;
   padding: 80px 0;
 }
 
@@ -30,14 +30,38 @@ body {
   gap: 30px;
 }
 
+
 .service-item {
-  background-color: #fff9f1;
-  border-radius: 10px;
+  background-color: #7B5E57;
+  border-radius: 15px;
   box-shadow: 0 4px 8px rgba(80, 56, 26, 0.2);
-  padding: 30px;
+  padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-image {
   width: 100%;
-  max-width: 350px;
+  height: 60%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #a47148;
+
+ transition: transform 0.3s ease;
+}
+.service-image:hover {
+  transform: scale(1.2);
+}
+.service-title {
+  font-size: 20px;
+  color: #1e1602;
+  margin: 10px 0 0;
+  text-align: center;
 }
 
 .service-item:hover {
@@ -51,11 +75,7 @@ body {
   margin-bottom: 20px;
 }
 
-.service-title {
-  font-size: 20px;
-  color: #3b2f2f;
-  margin-bottom: 15px;
-}
+
 
 .service-description {
   font-size: 16px;
