@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify
 from crewai_tools import SerperDevTool
 from crew.recommendation_agent import RecommendationAgent
-from data_manager.DataManager import DataManager
+from data_manager.data_manager import DataManager
 
 app = Flask(__name__)
 
 search_tool = SerperDevTool()
 recommendation_agent = RecommendationAgent(search_tool)
 data_manager = DataManager("database")
+
 
 @app.route("/generate_places", methods=["POST"])
 def generate_places():
