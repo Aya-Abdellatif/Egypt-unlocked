@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from crew.recommendation_agent import RecommendationAgent
 from data_manager.data_manager import DataManager
 
 app = Flask(__name__)
+CORS(app)
 
 search_tool = SerperDevTool()
 scrapping_tool = ScrapeWebsiteTool()
