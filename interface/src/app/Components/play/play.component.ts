@@ -1,11 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+} from '@angular/router';
 
 @Component({
   selector: 'app-play',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule, RouterLink, RouterLinkActive],
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.css']
 })
