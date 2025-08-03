@@ -2,7 +2,7 @@
   text-align: center;
   padding: 100px 20px;
   background-color: #f4e3c1;
-  color: #2b2b2b;
+  color: #160902;
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -19,14 +19,15 @@ p {
 .play-button {
   font-size: 1.2rem;
   padding: 12px 24px;
-  background-color: #5a4a42;
+  background-color: #160902;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .play-button:hover {
-  background-color: #161413;
+  background-color: #5a4a42;
 }
