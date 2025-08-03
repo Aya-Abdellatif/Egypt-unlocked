@@ -5,14 +5,14 @@ import {
 } from '@angular/router';
 
 import { HomeComponent } from './Components/home/home.component';
-import { PlayComponent } from './Components/play/play.component';
-import { SiwaComponent } from './Components/siwa/siwa.component';
-import { MapComponent } from './Components/map/map.component';
-import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
+import { MapComponent } from './Components/map/map.component';
+import { PlayComponent } from './Components/play/play.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { SiwaComponent } from './Components/siwa/siwa.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'play', component: PlayComponent },
   {path:'siwa',component:SiwaComponent},
   {path:'map', component:MapComponent},
