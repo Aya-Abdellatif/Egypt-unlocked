@@ -6,35 +6,73 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
+  styleUrls: ['./map.component.css']
 })
 export class MapComponent {
+  subscribed = true;
+  selectedLocation: any = null;
+
   locations = [
     {
       name: 'Giza Pyramids',
       type: 'mainstream',
+      description: 'The most iconic pyramids in Egypt.',
       link: 'https://www.google.com/maps/search/?api=1&query=Giza+Pyramids+cairo+Egypt',
-      x: 48,
+      crowded: true,
+      x: 20,
       y: 30
     },
     {
-      name: 'Egyptian Museum',
-      type: 'mainstream',
-      link: 'https://www.google.com/maps/search/?api=1&query=Egyptian+Museum+cairo+Egypt',
-      x: 51,
-      y: 32
+      name: 'Wadi el-Rayan',
+      type: 'hidden gem',
+      description: 'Natural oasis with waterfalls.',
+      link: 'https://www.google.com/maps/search/?api=1&query=Wadi+el-Rayan+cairo+Egypt',
+      crowded: false,
+      x: 80,
+      y: 30
     },
     {
-      name: 'Anba Bishoy Monastery',
+      name: 'Siwa Oasis',
       type: 'hidden gem',
-      link: 'https://www.google.com/maps/search/?api=1&query=Anba+Bishoy+Monastery+cairo+Egypt',
-      x: 45,
-      y: 28
+      description: 'An ancient and serene desert escape.',
+      link: 'https://www.google.com/maps/search/?api=1&query=Siwa+Oasis+Egypt',
+      crowded: false,
+      x: 20,
+      y: 60
     },
-    // Add all the rest with coordinates
+    {
+      name: 'Khan El-Khalili',
+      type: 'mainstream',
+      description: 'Famous traditional bazaar in Cairo.',
+      link: 'https://www.google.com/maps/search/?api=1&query=Khan+El-Khalili+Cairo+Egypt',
+      crowded: true,
+      x: 80,
+      y: 60
+    },
+    {
+      name: 'White Desert',
+      type: 'hidden gem',
+      description: 'Unique chalk rock formations in the desert.',
+      link: 'https://www.google.com/maps/search/?api=1&query=White+Desert+Egypt',
+      crowded: false,
+      x: 50,
+      y: 45
+    }
   ];
 
-  openLocation(link: string) {
-    window.open(link, '_blank');
+  selectLocation(loc: any) {
+    this.selectedLocation = loc;
+  }
+
+  closeInfo() {
+    this.selectedLocation = null;
+  }
+
+  accessExclusiveContent(loc: any) {
+    alert(`Enjoy your exclusive trip to ${loc.name}!`);
+  }
+
+  redeemCoins(loc: any) {
+    alert(`You've redeemed coins for ${loc.name}!`);
   }
 }

@@ -1,30 +1,95 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 .map-container {
   position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .map-image {
   width: 100%;
+  height: 100%;
+  object-fit:cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .location-marker {
   position: absolute;
+  font-size: 24px;
   cursor: pointer;
   transform: translate(-50%, -50%);
-  font-size: 20px;
   transition: transform 0.2s ease;
 }
 
 .location-marker:hover {
-  transform: scale(1.2) translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1.3);
 }
 
-.mainstream {
-  color: red;
+.info-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-image: url('/assets/gif/pop-up.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;  
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  width: 350px;
+  z-index: 1000;
+  border: 2px solid #ddd;
 }
 
-.hidden\ gem {
-  color: blue;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
+.close-button:hover {
+  color: #000;
+}
+
+.action-button, .redeem-button {
+  margin-top: 12px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.action-button {
+  background-color: #007c66;
+  color: white;
+}
+
+.action-button:hover {
+  background-color: #005e4f;
+}
+
+.redeem-button {
+  background-color: #ffc107;
+  color: black;
+}
+
+.redeem-button:hover {
+  background-color: #e0a800;
 }

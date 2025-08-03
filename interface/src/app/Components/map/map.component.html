@@ -1,15 +1,41 @@
 <div class="map-container">
   <img src="assets/images/egypt-map.jpg" class="map-image" alt="Map" />
 
-  <div
-    *ngFor="let loc of locations"
-    class="location-marker"
-    [ngClass]="loc.type"
-    [style.top.%]="loc.y"
-    [style.left.%]="loc.x"
-    (click)="openLocation(loc.link)"
-    [title]="loc.name"
+  <img
+  *ngFor="let location of locations"
+  class="location-marker"
+  [src]="'assets/gif/location2.gif'"
+  [style.left.%]="location.x"
+  [style.top.%]="location.y"
+  (click)="selectLocation(location)"
+  alt="marker"
+/>
+
+</div>
+
+<div *ngIf="selectedLocation" class="info-popup">
+<img
+  src="assets/gif/close.png" class="close-btn" alt="Close" (click)="closeInfo()"
+/>
+
+  <h2>{{ selectedLocation.name }}</h2>
+  <p>{{ selectedLocation.description }}</p>
+  <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
+  <p><strong>Status:</strong> {{ selectedLocation.crowded ? 'Crowded' : 'Not Crowded' }}</p>
+
+  <button
+    *ngIf="selectedLocation.crowded && subscribed"
+    (click)="accessExclusiveContent(selectedLocation)"
+    class="action-button"
   >
-    📍
-  </div>
+    Access Hidden Experience
+  </button>
+
+  <p *ngIf="selectedLocation.crowded && !subscribed" style="color: red;">
+    Only available for subscribed users
+  </p>
+
+  <button (click)="redeemCoins(selectedLocation)" class="redeem-button">
+    Redeem Coins
+  </button>
 </div>
