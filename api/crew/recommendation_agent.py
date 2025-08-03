@@ -1,5 +1,4 @@
-import os
-
+import requests
 from crewai import Agent, Task, Crew, LLM
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from urllib.parse import quote_plus
@@ -22,8 +21,8 @@ class RecommendationAgent:
 
         # LLM configuration
         gemini_llm = LLM(
-            model="gemini/gemini-1.5-flash",
-            api_key=os.getenv("GEMINI_API_KEY", ""),
+            model="gemini/gemini-2.0-flash-lite",
+            api_key="AIzaSyDYCeBNULacfL5cbG7hdd7OBpql-KFgYdQ",
             temperature=0.3,
         )
 
@@ -33,7 +32,7 @@ class RecommendationAgent:
             goal=(
                 f"Find up to 10 tourist places and hidden gems in {city}, Egypt matching interests {interests}. "
                 "You must use the provided search tool to fetch the latest information. You can also use the provided "
-                "scrap information to help you research"
+                "scrapping tool to help you research"
             ),
             backstory="You can fact-check using web searches, and return only JSON with 'name', 'type' and 'crowdness'.",
             llm=gemini_llm,
@@ -42,7 +41,7 @@ class RecommendationAgent:
 
         research_task = Task(
             description=(
-                f"Use web search as needed to gather up to 10 places. "
+                "Use web search as needed to gather up to 10 places. "
                 "Return a JSON object with key 'places'. Each place must have exactly 'name', 'type' "
                 "('mainstream' or 'hidden gem') and crowdness('not crowded', 'slightly crowded', 'crowded')."
             ),
@@ -58,5 +57,18 @@ class RecommendationAgent:
         places = output.json_dict.get("places", [])
         for p in places:
             p["link"] = self.get_maps_search_url(p["name"], city)
+            p["lat"], p["lng"] = self.get_lat_lng(p["name"])
+            p["city"] = city
 
         return places
+
+    def get_lat_lng(self, place_name):
+        url = "https://nominatim.openstreetmap.org/search"
+        params = {"q": place_name, "format": "json", "limit": 1, "countrycodes": "eg"}
+        headers = {
+            "User-Agent": "CrewAI-Agent/1.0"  # Required by Nominatim's usage policy
+        }
+        response = requests.get(url, params=params, headers=headers).json()
+        if response:
+            return float(response[0]["lat"]), float(response[0]["lon"])
+        return None, None

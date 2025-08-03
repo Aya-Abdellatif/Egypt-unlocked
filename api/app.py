@@ -37,7 +37,7 @@ def register():
     password = data.get("password")
     try:
         data_manager.add_new_user(username, password)
-    except:
+    except Exception:
         return jsonify({"status": "success"}), 401
     return jsonify({"status": "success"}), 200
 
