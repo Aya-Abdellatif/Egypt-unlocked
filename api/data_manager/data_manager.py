@@ -113,3 +113,17 @@ class DataManager:
             (username,),
         )
         return cursor.fetchone()
+
+    def get_leaderboard(self):
+        """Get the leaderboard with the user scores"""
+        cursor = self.conn.cursor()
+        cursor.execute(
+            """
+            SELECT username, score
+            FROM users
+            ORDER BY score DESC
+        """,
+        )
+
+        rows = cursor.fetchall()
+        return rows

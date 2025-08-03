@@ -42,5 +42,10 @@ def register():
     return jsonify({"status": "success"}), 200
 
 
+@app.route("/get_leaderboard")
+def get_leaderboard():
+    data_manager.get_leaderboard()
+
+
 if __name__ == "__main__":
     app.run(debug=True)
