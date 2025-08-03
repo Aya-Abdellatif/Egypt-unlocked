@@ -56,4 +56,4 @@ class RecommendationAgent:
         for p in places:
             p["link"] = self.get_maps_search_url(p["name"], city)
 
-        return json.dumps(places, indent=2, ensure_ascii=False)
+        return places
