@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify
-from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from crew.recommendation_agent import RecommendationAgent
 from data_manager.data_manager import DataManager
 
 app = Flask(__name__)
 
 search_tool = SerperDevTool()
-recommendation_agent = RecommendationAgent(search_tool)
+scrapping_tool = ScrapeWebsiteTool()
+recommendation_agent = RecommendationAgent(search_tool, scrapping_tool)
 data_manager = DataManager("database")
 
 
