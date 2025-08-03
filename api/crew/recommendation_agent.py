@@ -1,4 +1,5 @@
 import requests
+import os
 from crewai import Agent, Task, Crew, LLM
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from urllib.parse import quote_plus
@@ -30,7 +31,7 @@ class RecommendationAgent:
         researcher = Agent(
             role="Researcher",
             goal=(
-                f"Find up to 10 tourist places and hidden gems in {city}, Egypt matching interests {interests}. "
+                f"Find exactly 10 tourist places and hidden gems in {city}, Egypt matching interests {interests}. "
                 "You must use the provided search tool to fetch the latest information. You can also use the provided "
                 "scrapping tool to help you research"
             ),
@@ -41,7 +42,7 @@ class RecommendationAgent:
 
         research_task = Task(
             description=(
-                "Use web search as needed to gather up to 10 places. "
+                "Use web search as needed to gather exactly 10 places. "
                 "Return a JSON object with key 'places'. Each place must have exactly 'name', 'type' "
                 "('mainstream' or 'hidden gem') and crowdness('not crowded', 'slightly crowded', 'crowded')."
             ),
@@ -63,12 +64,21 @@ class RecommendationAgent:
         return places
 
     def get_lat_lng(self, place_name):
-        url = "https://nominatim.openstreetmap.org/search"
-        params = {"q": place_name, "format": "json", "limit": 1, "countrycodes": "eg"}
-        headers = {
-            "User-Agent": "CrewAI-Agent/1.0"  # Required by Nominatim's usage policy
+        url = "https://us1.locationiq.com/v1/search.php"
+        API_KEY = os.getenv("LOCIQ_API_KEY")
+        params = {
+            "key": API_KEY,
+            "q": place_name,
+            "format": "json",
+            "limit": 1,
+            "countrycodes": "eg",  # optional: limit to Egypt
         }
-        response = requests.get(url, params=params, headers=headers).json()
-        if response:
-            return float(response[0]["lat"]), float(response[0]["lon"])
-        return None, None
+
+        resp = requests.get(url, params=params)
+        data = resp.json()
+        try:
+            lat = float(data[0]["lat"])
+            lng = float(data[0]["lon"])
+            return lat, lng
+        except Exception:
+            return None, None
