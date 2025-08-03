@@ -1,0 +1,50 @@
+<div class="play-container">
+  <!-- Step 1: Enter Name -->
+  <div *ngIf="step === 1">
+    <h2>Enter your name to begin:</h2>
+    <input [(ngModel)]="userName" placeholder="Your name" />
+    <br><br>
+    <button [disabled]="!userName.trim()" (click)="continue()">Next</button>
+  </div>
+
+  <!-- Step 2: Greet and ask for city -->
+  <div *ngIf="step === 2">
+    <h2>Hello, {{ userName }} 👋</h2>
+    <p>Choose a city you'd like to explore (or skip):</p>
+    <select [(ngModel)]="selectedCity">
+      <option value="">-- Choose a city --</option>
+      <option value="Cairo">Cairo</option>
+      <option value="Luxor">Luxor</option>
+      <option value="Aswan">Aswan</option>
+      <option value="Alexandria">Alexandria</option>
+    </select>
+    <br><br>
+    <button (click)="continue()" [disabled]="!selectedCity">Next</button>
+    <button (click)="skipCity()">Skip</button>
+  </div>
+
+  <!-- Step 3: Ask for activity -->
+  <div *ngIf="step === 3">
+    <p>Pick an activity (or skip):</p>
+    <select [(ngModel)]="selectedActivity">
+      <option value="">-- Choose an activity --</option>
+      <option value="History">History</option>
+      <option value="Food">Food</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Photography">Photography</option>
+    </select>
+    <br><br>
+    <button (click)="continue()" [disabled]="!selectedActivity">Next</button>
+    <button (click)="skipActivity()">Skip</button>
+  </div>
+
+  <!-- Step 4: Ready to start -->
+  <div *ngIf="step === 4">
+    <h2>All set, {{ userName }}!</h2>
+    <p>
+      City: {{ selectedCity }} <br>
+      Activity: {{ selectedActivity }}
+    </p>
+    <button (click)="startGame()">Start Game 🚀</button>
+  </div>
+</div>
