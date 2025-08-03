@@ -9,12 +9,17 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:5000/register'; // Replace with your Flask API URL
+  private apiUrl = 'http://localhost:5000'; // Replace with your Flask API URL
 
   constructor(private http: HttpClient) { }
 
   register(username: string, password: string): Observable<any> {
     const body = { username, password };
-    return this.http.post(this.apiUrl, body);
+    return this.http.post(`${this.apiUrl}/register`, body);
+  }
+
+  login(username: string, password: string): Observable<any> {
+    const body = { username, password };
+    return this.http.post(`${this.apiUrl}/login`, body);
   }
 }
