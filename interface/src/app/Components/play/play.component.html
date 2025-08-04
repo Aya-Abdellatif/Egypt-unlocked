@@ -31,8 +31,8 @@
       <option value="Photography">Photography</option>
     </select>
     <br><br>
-    <button (click)="continue()" [disabled]="!selectedActivity">Next</button>
     <button (click)="skipActivity()">Skip</button>
+    <button (click)="continue()" [disabled]="!selectedActivity">Next</button>
   </div>
 
   <div *ngIf="step === 4">

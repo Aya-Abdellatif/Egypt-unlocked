@@ -26,8 +26,8 @@
   <div
     *ngFor="let location of locations; let i = index"
     class="location-marker"
-    [style.left.%]="location.lat"
-    [style.top.%]="location.lng"
+    [style.left.%]="getRandomNumber()"
+    [style.top.%]="getRandomNumber()"
     (click)="selectLocation(location)"
     [title]="location.name"
   >
