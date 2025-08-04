@@ -1,13 +1,11 @@
-import { CommonModule } from '@angular/common';
 // register.component.ts
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -15,13 +13,14 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) { }
+constructor(private authService: AuthService, private router: Router) { }
+
 
   onRegister(): void {
     this.authService.register(this.username, this.password).subscribe(
       response => {
         console.log('Registration successful', response);
-        // Handle successful registration (e.g., navigate to login page)
+        this.router.navigate(['/home']);
       },
       error => {
         console.error('Registration failed', error);
