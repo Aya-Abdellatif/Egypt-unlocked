@@ -128,7 +128,7 @@ class DataManager:
         """,
             (username, hashed_password),
         )
-        self.conn.commit()
+        conn.commit()
 
     def verify_user_credentials(self, username: str, password: str) -> bool:
         """Check if given username and password match a stored user.
