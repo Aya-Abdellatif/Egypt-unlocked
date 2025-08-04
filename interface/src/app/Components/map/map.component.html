@@ -1,15 +1,38 @@
 <div class="map-container">
+  <!-- Welcome message -->
+  <div *ngIf="userName" class="welcome-message" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 15px; border-radius: 8px; z-index: 1000;">
+    <h3>Welcome, {{ userName }}!</h3>
+    <p>City: {{ selectedCity }} | Activity: {{ selectedActivity }}</p>
+  </div>
+
   <img src="assets/images/egypt-map.jpg" class="map-image" alt="Map" />
 
-  <img
-  *ngFor="let location of locations"
-  class="location-marker"
-  [src]="'assets/gif/location2.png'"
-  [style.left.%]="location.x"
-  [style.top.%]="location.y"
-  (click)="selectLocation(location)"
-  alt="marker"
-/>
+  <!-- Loading indicator -->
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="loading-spinner">Loading locations...</div>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="error && !loading" class="error-overlay">
+    <div class="error-message">
+      <p>{{ error }}</p>
+      <button (click)="refreshLocations()" class="retry-button">Retry</button>
+    </div>
+  </div>
+
+
+
+  <!-- Location markers -->
+  <div
+    *ngFor="let location of locations; let i = index"
+    class="location-marker"
+    [style.left.%]="location.lat"
+    [style.top.%]="location.lng"
+    (click)="selectLocation(location)"
+    [title]="location.name"
+  >
+    <span style="color: white; font-weight: bold; font-size: 16px;">📍</span>
+  </div>
 
 </div>
 
@@ -21,18 +44,18 @@
   <div class="popup-content">
     <h2>{{ selectedLocation.name }}</h2>
     <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
-    <p><strong>Status:</strong> {{ selectedLocation.crowded ? 'Crowded' : 'Not Crowded' }}</p>
-    <button
-      *ngIf="selectedLocation.crowded && subscribed"
-      (click)="accessExclusiveContent(selectedLocation)"
-      class="action-button"
-    >
-      Hidden Experience
-    </button>
+         <p><strong>Status:</strong> {{ selectedLocation.crowded }}</p>
+     <button
+       *ngIf="selectedLocation.crowded === 'Crowded' && subscribed"
+       (click)="accessExclusiveContent(selectedLocation)"
+       class="action-button"
+     >
+       Hidden Experience
+     </button>
 
-    <p *ngIf="selectedLocation.crowded && !subscribed" style="color: red;">
-      Only available for subscribed users
-    </p>
+     <p *ngIf="selectedLocation.crowded === 'Crowded' && !subscribed" style="color: red;">
+       Only available for subscribed users
+     </p>
 
     <button (click)="redeemCoins(selectedLocation)" class="redeem-button">
       Redeem Coins

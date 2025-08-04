@@ -63,7 +63,7 @@ class RecommendationAgent:
             )
 
         gemini_llm = LLM(
-            model="gemini/gemini-2.0-flash-lite",
+            model="gemini/gemini-2.0-flash",
             api_key=api_key,
             temperature=0.3,
         )
@@ -103,7 +103,10 @@ class RecommendationAgent:
             p["lat"], p["lng"] = lat, lng
             p["city"] = city
 
-        return places
+        # Remove unknown locations
+        filtered = [d for d in places if d["lat"] is not None]
+
+        return filtered
 
     def get_lat_lng(self, place_name: str) -> Tuple[Optional[float], Optional[float]]:
         """Retrieve latitude and longitude for a place using LocationIQ.

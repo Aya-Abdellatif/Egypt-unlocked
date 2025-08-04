@@ -5,7 +5,9 @@ import {
   RouterLink,
   RouterLinkActive,
   RouterModule,
+  Router,
 } from '@angular/router';
+import { GameService, GamePreferences } from '@services/game.service';
 
 @Component({
   selector: 'app-play',
@@ -19,6 +21,8 @@ export class PlayComponent {
   userName = '';
   selectedCity = '';
   selectedActivity = '';
+
+  constructor(private gameService: GameService, private router: Router) {}
 
   continue() {
     this.step++;
@@ -35,6 +39,17 @@ export class PlayComponent {
   }
 
   startGame() {
-    console.log(`Start game for ${this.userName}, city: ${this.selectedCity}, activity: ${this.selectedActivity}`);
+    // Save user preferences
+    const preferences: GamePreferences = {
+      userName: this.userName,
+      selectedCity: this.selectedCity || 'Any',
+      selectedActivity: this.selectedActivity || 'Any'
+    };
+    
+    this.gameService.setGamePreferences(preferences);
+    console.log('Game preferences saved:', preferences);
+    
+    // Navigate to map
+    this.router.navigate(['/map']);
   }
 }
