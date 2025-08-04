@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,57 +8,28 @@ import { CommonModule } from '@angular/common';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnInit{
   subscribed = true;
   selectedLocation: any = null;
-
-  locations = [
-    {
-      name: 'Giza Pyramids',
-      type: 'mainstream',
-      description: 'The most iconic pyramids in Egypt.',
-      link: 'https://www.google.com/maps/search/?api=1&query=Giza+Pyramids+cairo+Egypt',
-      crowded: true,
-      x: 20,
-      y: 30
-    },
-    {
-      name: 'Wadi el-Rayan',
-      type: 'hidden gem',
-      description: 'Natural oasis with waterfalls.',
-      link: 'https://www.google.com/maps/search/?api=1&query=Wadi+el-Rayan+cairo+Egypt',
-      crowded: false,
-      x: 80,
-      y: 30
-    },
-    {
-      name: 'Siwa Oasis',
-      type: 'hidden gem',
-      description: 'An ancient and serene desert escape.',
-      link: 'https://www.google.com/maps/search/?api=1&query=Siwa+Oasis+Egypt',
-      crowded: false,
-      x: 20,
-      y: 60
-    },
-    {
-      name: 'Khan El-Khalili',
-      type: 'mainstream',
-      description: 'Famous traditional bazaar in Cairo.',
-      link: 'https://www.google.com/maps/search/?api=1&query=Khan+El-Khalili+Cairo+Egypt',
-      crowded: true,
-      x: 80,
-      y: 60
-    },
-    {
-      name: 'White Desert',
-      type: 'hidden gem',
-      description: 'Unique chalk rock formations in the desert.',
-      link: 'https://www.google.com/maps/search/?api=1&query=White+Desert+Egypt',
-      crowded: false,
-      x: 50,
-      y: 45
+  locations: any = null;
+ 
+  async ngOnInit() {
+    let data = {
+      "city": "Cairo",
+      "interests": ["food, ancient"]
     }
-  ];
+
+    console.log("HI")
+    this.locations = await fetch("http://127.0.0.1:5000/generate_places", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    console.log(this.locations)
+
+  }
 
   selectLocation(loc: any) {
     this.selectedLocation = loc;
