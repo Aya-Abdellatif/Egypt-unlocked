@@ -38,24 +38,21 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 338px;
   height: 249px;
-
-  background-image: url('/assets/gif/pop-up.png');
+  background-image: 
+    linear-gradient(rgba(12, 10, 10, 0.793), rgba(205, 115, 115, 0.4)),
+    url('/assets/gif/pop-up.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   padding: 20px;
   box-sizing: border-box;
   z-index: 1000;
-
   color: #000;
   text-align: center;
 }

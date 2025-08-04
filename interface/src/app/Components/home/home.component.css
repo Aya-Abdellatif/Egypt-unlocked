@@ -1,4 +1,5 @@
 .home-container {
+  justify-content: center;
   text-align: center;
   padding: 100px 20px;
   background-color: #f4e3c1;
@@ -6,6 +7,11 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+img{
+  width: 35%;
+  height: 35%;
+}
+/*
 h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -15,7 +21,7 @@ p {
   font-size: 1.2rem;
   margin-bottom: 40px;
 }
-
+*/
 .play-button {
   font-size: 1.2rem;
   padding: 12px 24px;
@@ -26,6 +32,7 @@ p {
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
+  width: 100%;
 }
 
 .play-button:hover {

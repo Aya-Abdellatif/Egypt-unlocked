@@ -22,7 +22,6 @@
     <h2>{{ selectedLocation.name }}</h2>
     <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
     <p><strong>Status:</strong> {{ selectedLocation.crowded ? 'Crowded' : 'Not Crowded' }}</p>
-
     <button
       *ngIf="selectedLocation.crowded && subscribed"
       (click)="accessExclusiveContent(selectedLocation)"
