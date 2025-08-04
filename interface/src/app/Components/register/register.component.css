@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(135deg, #f3e5d0, #e0c2a2);
+  background-color: white;
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
@@ -11,20 +11,10 @@ body {
   padding: 30px 25px;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  background-color: #fffaf3;
-  border: 2px solid #c9a67c;
+  background-color: f6f1e9;
+  border: 2px solid #a47148;
   position: relative;
   overflow: hidden;
-}
-
-.register-container::before {
-  content: "𓆎𓅓𓏏";
-  position: absolute;
-  top: -25px;
-  left: -15px;
-  font-size: 4.5rem;
-  color: rgba(190, 140, 90, 0.08);
-  transform: rotate(10deg);
 }
 
 .register-container h2 {

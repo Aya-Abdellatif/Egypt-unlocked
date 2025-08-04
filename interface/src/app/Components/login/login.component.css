@@ -11,20 +11,10 @@ body {
   padding: 30px 25px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  background-color: #fff8f0;
-  border: 2px solid #d2b48c;
+  background-color: white;
+  border: 2px solid #a47148;
   position: relative;
   overflow: hidden;
-}
-
-.login-container::before {
-  content: "𓆎𓅓𓏏";
-  position: absolute;
-  top: -30px;
-  right: -20px;
-  font-size: 5rem;
-  color: rgba(210, 180, 140, 0.15);
-  transform: rotate(-20deg);
 }
 
 .login-container h2 {
@@ -32,7 +22,7 @@ body {
   color: #5a4a42;
   margin-bottom: 30px;
   font-family: 'Georgia', serif;
-  border-bottom: 1px solid #c9b29b;
+  border-bottom: 1px solid #a47148;
   padding-bottom: 10px;
 }
 
