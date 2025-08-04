@@ -4,7 +4,7 @@
   <img
   *ngFor="let location of locations"
   class="location-marker"
-  [src]="'assets/gif/location2.gif'"
+  [src]="'assets/gif/location2.png'"
   [style.left.%]="location.x"
   [style.top.%]="location.y"
   (click)="selectLocation(location)"
@@ -14,28 +14,30 @@
 </div>
 
 <div *ngIf="selectedLocation" class="info-popup">
-<img
-  src="assets/gif/close.png" class="close-btn" alt="Close" (click)="closeInfo()"
-/>
+  <img
+    src="assets/gif/close.png" class="close-btn" alt="Close" (click)="closeInfo()"
+  />
+  <br>
+  <div class="popup-content">
+    <h2>{{ selectedLocation.name }}</h2>
+    <p>{{selectedLocation.link}}</p>
+    <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
+    <p><strong>Status:</strong> {{ selectedLocation.crowded ? 'Crowded' : 'Not Crowded' }}</p>
 
-  <h2>{{ selectedLocation.name }}</h2>
-  <p>{{ selectedLocation.description }}</p>
-  <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
-  <p><strong>Status:</strong> {{ selectedLocation.crowded ? 'Crowded' : 'Not Crowded' }}</p>
+    <button
+      *ngIf="selectedLocation.crowded && subscribed"
+      (click)="accessExclusiveContent(selectedLocation)"
+      class="action-button"
+    >
+      Hidden Experience
+    </button>
 
-  <button
-    *ngIf="selectedLocation.crowded && subscribed"
-    (click)="accessExclusiveContent(selectedLocation)"
-    class="action-button"
-  >
-    Access Hidden Experience
-  </button>
+    <p *ngIf="selectedLocation.crowded && !subscribed" style="color: red;">
+      Only available for subscribed users
+    </p>
 
-  <p *ngIf="selectedLocation.crowded && !subscribed" style="color: red;">
-    Only available for subscribed users
-  </p>
-
-  <button (click)="redeemCoins(selectedLocation)" class="redeem-button">
-    Redeem Coins
-  </button>
+    <button (click)="redeemCoins(selectedLocation)" class="redeem-button">
+      Redeem Coins
+    </button>
+  </div>
 </div>
