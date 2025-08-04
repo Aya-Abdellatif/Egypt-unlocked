@@ -129,4 +129,8 @@ export class MapComponent implements OnInit {
     this.loadLocations();
   }
 
+  getRandomNumber(min: number = 20, max: number = 80): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 }
