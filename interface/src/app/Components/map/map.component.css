@@ -139,7 +139,7 @@ button[type="submit"]:hover {
 }
 
 .action-button, .redeem-button {
-  margin-top: 12px;
+  margin-top: 9px;
   display: block;
   width: 100%;
   padding: 10px;
