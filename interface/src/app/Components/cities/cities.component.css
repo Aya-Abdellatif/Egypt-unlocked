@@ -81,6 +81,20 @@ body {
   color: #666;
   line-height: 1.6;
 }
+.readmore-link {
+  display: inline-block;
+  font-size: 18px;
+  color: #a47148;
+  text-decoration: none;
+  font-weight: bold;
+ 
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.readmore-link:hover {
+  color: #1e1602;
+  transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
   .services-grid {

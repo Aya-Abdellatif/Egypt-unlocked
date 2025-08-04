@@ -2,9 +2,11 @@
   max-width: 800px;
   margin: 30px auto;
   padding: 20px;
-  background-color: white;
+
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  border: 2px solid #a47148;
 }
 
 .leaderboard-header {
@@ -25,7 +27,7 @@
 
 .refresh-btn {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #5a3108;
   color: white;
   border: none;
   border-radius: 6px;
@@ -35,7 +37,7 @@
 }
 
 .refresh-btn:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #5a3108;
 }
 
 .refresh-btn:disabled {
@@ -50,13 +52,13 @@
 }
 
 .error {
-  color: #dc3545;
+  color: #5a3108;
 }
 
 .error button {
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: #dc3545;
+  background-color: #5a3108;
   color: white;
   border: none;
   border-radius: 4px;
@@ -138,22 +140,22 @@
     margin: 15px;
     padding: 15px;
   }
-  
+
   .leaderboard-header {
     flex-direction: column;
     gap: 15px;
     text-align: center;
   }
-  
+
   .leaderboard-table {
     font-size: 14px;
   }
-  
+
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 8px 5px;
   }
-  
+
   .date {
     display: none;
   }
