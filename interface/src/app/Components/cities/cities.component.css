@@ -1,14 +1,12 @@
-/* General Styles */
-
 body {
   color: #5a4a42;
 }
 
-/* Section Title */
 .section-title {
   font-size: 1.2rem;
   color: #a47148;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .section-subtitle {
@@ -28,11 +26,13 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  border: #a47148;
 }
 
 
 .city-item {
-  background-color: #7B5E57;
+  background-color:#f6f1e9;
+  border: 2px solid #a47148;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(80, 56, 26, 0.2);
   padding: 20px;
@@ -43,6 +43,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .city-image {
@@ -50,14 +51,12 @@ body {
   height: 60%;
   object-fit: cover;
   border-radius: 10px;
-  border: 2px solid #a47148;
-
  transition: transform 0.3s ease;
 }
 .city-image:hover {
   transform: scale(1.2);
 }
-.city-title {
+.city-title a {
   font-size: 20px;
   color: #1e1602;
   margin: 10px 0 0;
@@ -83,7 +82,6 @@ body {
   line-height: 1.6;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .services-grid {
     flex-direction: column;
@@ -93,22 +91,4 @@ body {
   .city-item {
     max-width: 100%;
   }
-}
-.read-more {
-  display: inline-block;
-  margin-top: 10px;
-  color: #edcdb3;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  border-bottom: 2px solid transparent;
-  padding-bottom: 2px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.read-more:hover {
-  color: #7c4a21;
-  border-bottom: 2px solid #a47148;
-  transform: translateX(3px);
 }

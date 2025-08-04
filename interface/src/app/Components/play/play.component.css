@@ -11,13 +11,13 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   min-height: 50vh;
   padding: 40px 20px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 20px;
+  background-color: #f6f1e9;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  margin: 0 20px;
 }
+
 .play-container h2 {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -65,6 +65,10 @@ button:hover:not(:disabled) {
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+input{
+  border-color: #a47148;
 }
 
 a {

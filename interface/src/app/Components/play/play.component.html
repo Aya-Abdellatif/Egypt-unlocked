@@ -17,8 +17,8 @@
       <option value="Alexandria">Alexandria</option>
     </select>
     <br><br>
-    <button (click)="continue()" [disabled]="!selectedCity">Next</button>
     <button (click)="skipCity()">Skip</button>
+    <button (click)="continue()" [disabled]="!selectedCity">Next</button>
   </div>
 
   <div *ngIf="step === 3">
