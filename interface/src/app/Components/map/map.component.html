@@ -44,16 +44,16 @@
   <div class="popup-content">
     <h2>{{ selectedLocation.name }}</h2>
     <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
-         <p><strong>Status:</strong> {{ selectedLocation.crowded }}</p>
+         <p><strong>Status:</strong> {{ selectedLocation.crowdness }}</p>
      <button
-       *ngIf="selectedLocation.crowded === 'Crowded' && subscribed"
+       *ngIf="selectedLocation.crowdness === 'Crowded' && subscribed"
        (click)="accessExclusiveContent(selectedLocation)"
        class="action-button"
      >
        Hidden Experience
      </button>
 
-     <p *ngIf="selectedLocation.crowded === 'Crowded' && !subscribed" style="color: red;">
+     <p *ngIf="selectedLocation.crowdness === 'Crowded' && !subscribed" style="color: red;">
        Only available for subscribed users
      </p>
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 export interface Location {
   name: string;
   type: string;
-  crowded: string;
+  crowdness: string;
   lat: number;
   lng: number;
   link: string;
@@ -34,7 +34,7 @@ export class MapService {
       {
         name: "Pyramids of Giza",
         type: "Historical",
-        crowded: "Crowded",
+        crowdness: "Crowded",
         lat: 30,
         lng: 40,
         link: "https://maps.google.com/?q=29.9792,31.1342"
@@ -42,7 +42,7 @@ export class MapService {
       {
         name: "Egyptian Museum",
         type: "Museum",
-        crowded: "Not Crowded",
+        crowdness: "Not Crowded",
         lat: 60,
         lng: 50,
         link: "https://maps.google.com/?q=30.0478,31.2336"
@@ -50,7 +50,7 @@ export class MapService {
       {
         name: "Khan el-Khalili",
         type: "Market",
-        crowded: "Crowded",
+        crowdness: "Crowded",
         lat: 70,
         lng: 60,
         link: "https://maps.google.com/?q=30.0478,31.2619"
@@ -58,7 +58,7 @@ export class MapService {
       {
         name: "Salah El Din Citadel",
         type: "Historical",
-        crowded: "Not Crowded",
+        crowdness: "Not Crowded",
         lat: 45,
         lng: 35,
         link: "https://maps.google.com/?q=30.0292,31.2597"
@@ -66,7 +66,7 @@ export class MapService {
       {
         name: "Al-Azhar Park",
         type: "Park",
-        crowded: "Not Crowded",
+        crowdness: "Not Crowded",
         lat: 55,
         lng: 45,
         link: "https://maps.google.com/?q=30.0444,31.2357"

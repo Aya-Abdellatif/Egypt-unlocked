@@ -80,14 +80,8 @@ export class MapComponent implements OnInit {
   }
 
   redeemCoins(loc: Location) {
-    const queryMatch = loc.link.match(/query=([-.\d]+),([-.\d]+)/);
-    if (!queryMatch) {
-      alert('⚠️ Location coordinates not found in the link.');
-      return;
-    }
-
-    const targetLat = parseFloat(queryMatch[1]);
-    const targetLng = parseFloat(queryMatch[2]);
+    const targetLat = loc.lat;
+    const targetLng = loc.lng;
 
     if (!navigator.geolocation) {
       alert('❌ Geolocation is not supported by your browser.');
