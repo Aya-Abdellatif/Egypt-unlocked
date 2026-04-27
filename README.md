@@ -1,8 +1,8 @@
 # Egypt Unlocked
 
-## Introduction
-
 Egypt Unlocked is a web application designed to help tourists find places to visit in Egypt while entertaining them through challenges and earning points that eventually can be redeemed for a discount or a voucher.
+
+<img width="1763" height="1497" alt="Screenshot_28-4-2026_14214_localhost" src="https://github.com/user-attachments/assets/40d710dd-67ab-4597-b1cc-f58e272d2000" />
 
 ## Components
 
